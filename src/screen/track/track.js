@@ -1,11 +1,5 @@
 import React from "react";
-import {
-  View,
-  StyleSheet,
-  SafeAreaView,
-  Platform,
-  StatusBar,
-} from "react-native";
+import { View, StyleSheet, Platform, StatusBar } from "react-native";
 import AppText from "../../components/UI/AppText";
 
 const Track = () => {

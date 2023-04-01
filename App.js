@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import mystore from "./src/ReduxSlice/cartSlice";
@@ -9,6 +9,8 @@ import MyFood from "./src/screen/Home/MyFood/MyFood";
 import Signup from "./src/screen/Signup/Signup";
 import { Provider } from "react-redux";
 import Cartscreen from "./src/screen/Cart/cartscreen";
+import Home from "./src/screen/Home/home";
+import BottomTabNavigator from "./src/components/BottomTabs/BottomTabNavigator";
 
 export default function App() {
   const Tab = createBottomTabNavigator();
@@ -19,10 +21,7 @@ export default function App() {
       <Provider store={mystore}>
         <PersistGate persistor={mypersistor}>
           <NavigationContainer>
-            <Tab.Navigator>
-              <Tab.Screen name="MyFood" component={MyFood} />
-              <Tab.Screen name="Cartscreen" component={Cartscreen} />
-            </Tab.Navigator>
+            <BottomTabNavigator />
           </NavigationContainer>
         </PersistGate>
       </Provider>
