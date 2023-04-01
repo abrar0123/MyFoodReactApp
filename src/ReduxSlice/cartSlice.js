@@ -65,6 +65,10 @@ const authSlice = createSlice({
       state.authToken = obj.token;
       state.isLoggedIn = obj.status;
     },
+    aut_Logout: (state) => {
+      state.authToken = "";
+      state.isLoggedIn = false;
+    },
   },
 });
 

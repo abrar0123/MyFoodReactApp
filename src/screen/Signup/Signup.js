@@ -22,7 +22,7 @@ import { useWindowDimensions } from "react-native";
 import { useDispatch } from "react-redux";
 import { auth, authActions } from "../../ReduxSlice/cartSlice";
 const Login = () => {
-  const [email, setemail] = useState("ab090988@gmail.com");
+  const [email, setemail] = useState("");
   const [pass, setpass] = useState("");
   const [username, setusername] = useState("");
   const [FirebaseError, setFirebaseError] = useState("");
@@ -137,8 +137,8 @@ const Login = () => {
       if (!response.ok) {
         throw Error("Result not ok ");
       }
-      console.log("token___", data.idToken);
-      // authctx.onLogin(data.idToken, email);
+      // console.log("token___", data.idToken);
+      Dispatch(authActions.auth_Login({ token: data.idToken, status: true }));
 
       Alert.alert("You have Successfully Log In", email + "\n" + pass);
 

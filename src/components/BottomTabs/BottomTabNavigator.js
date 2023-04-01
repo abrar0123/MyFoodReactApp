@@ -8,7 +8,7 @@ import Home from "../../screen/Home/home";
 import colors from "../../constants/colors";
 import { Ionicons, AntDesign } from "@expo/vector-icons";
 import { TouchableOpacity } from "react-native";
-
+import Userprofile from "../../screen/UserProfile/userprofile";
 const BottomTabNavigator = () => {
   const Tab = createBottomTabNavigator();
   return (
@@ -66,7 +66,7 @@ const BottomTabNavigator = () => {
               color={color}
             />
           ) : (
-            route.name === "Profile" && (
+            route.name === "Userprofile" && (
               <Ionicons
                 name={focused ? "person" : "person-outline"}
                 size={focused ? 33 : 28}
@@ -96,7 +96,7 @@ const BottomTabNavigator = () => {
     >
       <Tab.Screen name="MyFood" component={MyFood} />
       <Tab.Screen name="Cart" component={Cartscreen} />
-      <Tab.Screen name="Profile" component={Home} />
+      <Tab.Screen name="Userprofile" component={Userprofile} />
     </Tab.Navigator>
   );
 };
