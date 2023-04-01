@@ -4,25 +4,34 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import mystore from "./src/ReduxSlice/cartSlice";
 import { mypersistor } from "./src/ReduxSlice/cartSlice";
 import { PersistGate } from "redux-persist/integration/react";
-
-import MyFood from "./src/screen/Home/MyFood/MyFood";
+import { useSelector } from "react-redux";
 import Signup from "./src/screen/Signup/Signup";
 import { Provider } from "react-redux";
-import Cartscreen from "./src/screen/Cart/cartscreen";
-import Home from "./src/screen/Home/home";
+
 import BottomTabNavigator from "./src/components/BottomTabs/BottomTabNavigator";
 
 export default function App() {
-  const Tab = createBottomTabNavigator();
+  const App2 = () => {
+    const isLoggedIn = useSelector((e) => e.foodcart.isLoggedIn);
 
-  return (
-    <>
-      {/* <Signup /> */}
-      <Provider store={mystore}>
-        <PersistGate persistor={mypersistor}>
+    console.log("isLoggedIn__", isLoggedIn);
+    return (
+      <>
+        {isLoggedIn ? (
+          <Signup />
+        ) : (
           <NavigationContainer>
             <BottomTabNavigator />
           </NavigationContainer>
+        )}
+      </>
+    );
+  };
+  return (
+    <>
+      <Provider store={mystore}>
+        <PersistGate persistor={mypersistor}>
+          <App2 />
         </PersistGate>
       </Provider>
     </>

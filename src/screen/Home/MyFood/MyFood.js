@@ -1,5 +1,12 @@
 import React, { Fragment } from "react";
-import { View, StyleSheet, FlatList, TouchableOpacity } from "react-native";
+import {
+  View,
+  StyleSheet,
+  FlatList,
+  TouchableOpacity,
+  Platform,
+  StatusBar,
+} from "react-native";
 import { useState, useEffect } from "react";
 import AppText from "../../../components/UI/AppText";
 import ListFood from "./listfood";
@@ -91,7 +98,7 @@ const MyFood = () => {
   };
   return (
     <>
-      <Card style={{ margin: 8 }}>
+      <Card style={styles.mainContainer}>
         <FlatList
           data={screens}
           numColumns={2}
@@ -110,23 +117,11 @@ const MyFood = () => {
 };
 
 const styles = StyleSheet.create({
-  inputcontainer: {
-    display: "flex",
-    // backgroundColor: Color.grey,
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
-    borderWidth: 2,
-    borderColor: colors.white,
-    padding: 10,
-    margin: 10,
-    borderRadius: 25,
+  mainContainer: {
+    margin: 8,
+    paddingTop: Platform.OS === "android" && StatusBar.currentHeight,
   },
-  input: {
-    width: "75%",
-    fontSize: 18,
-    fontWeight: "500",
-  },
+
   btn: {
     padding: 10,
     backgroundColor: colors.orange,

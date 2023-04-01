@@ -93,10 +93,11 @@ const Login = () => {
     } else if (pass.trim() === "") {
       return seterrors({ Pass: passError });
     } else seterrors({ Email: "", Pass: "" });
+
     if (Islogin) {
-      // firebaseLogin();
+      firebaseLogin();
     } else {
-      // firebaseSignup();
+      firebaseSignup();
     }
   };
   let Fontsize;
@@ -194,10 +195,6 @@ const Login = () => {
 
   return (
     <Fragment>
-      {/* <LinearGradient
-        style={{ flex: 1 }}
-        colors={[colors.jaman, colors.grey, colors.mxprimary]}
-      > */}
       <Card style={styles.mainContainer}>
         {/* <form onsubmit={onsubmit}> */}
         <AppText
@@ -210,18 +207,6 @@ const Login = () => {
         >
           {Islogin ? logintext : signuptext}
         </AppText>
-
-        <TextInput
-          style={{
-            backgroundColor: colors.black,
-            width: 100,
-            height: 90,
-            borderRadius: 10,
-            height: 40,
-            borderColor: "gray",
-            borderWidth: 1,
-          }}
-        />
 
         {/* username input that only signup */}
         {!Islogin && (
@@ -323,10 +308,8 @@ const Login = () => {
           )}
         </Pressable>
 
-        <AppText>kjdjkdjk</AppText>
         {/* </form> */}
       </Card>
-      {/* </LinearGradient> */}
     </Fragment>
   );
 };
@@ -358,15 +341,13 @@ const styles = StyleSheet.create({
     borderBottomColor: colors.blue,
     paddingRight: 10,
     paddingBottom: 10,
-    // backgroundColor: colors.red,
     marginVertical: 10,
   },
   input: {
     width: "90%",
     height: 50,
     fontSize: 18,
-    borderBottomColor: colors.red,
-    backgroundColor: colors.red,
+    // backgroundColor: colors.red,
     fontWeight: "500",
     color: colors.black,
   },
