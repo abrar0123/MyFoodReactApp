@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { createSlice } from "@reduxjs/toolkit";
 import { persistReducer, persistStore } from "redux-persist";
-// import AsyncStorage from "@react-native-async-storage/async-storage";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import {
   FLUSH,
   REHYDRATE,
@@ -35,6 +35,7 @@ const foodCartSlice = createSlice({
         state.cartIndex++;
       }
     },
+
     deleteToCart: (state, action) => {
       const newProduct = action.payload;
       const userFood = state.userFoodCart;
@@ -45,6 +46,7 @@ const foodCartSlice = createSlice({
         }
       }
     },
+
     deleteProduct: (state, action) => {
       state.userFoodCart = state.userFoodCart.filter(
         (e) => e.id !== action.payload.id
@@ -53,15 +55,15 @@ const foodCartSlice = createSlice({
   },
 });
 
-// const persistConfig = {
-//   key: "root",
-//   storage: AsyncStorage,
-// };
+const persistConfig = {
+  key: "root",
+  storage: AsyncStorage,
+};
 
-// const persistedreducer = persistReducer(persistConfig, foodCartSlice.reducer);
+const persistedreducer = persistReducer(persistConfig, foodCartSlice.reducer);
 
 const rootReducer = combineReducers({
-  foodcart: foodCartSlice.reducer,
+  foodcart: persistedreducer,
 });
 
 const mystore = configureStore({
