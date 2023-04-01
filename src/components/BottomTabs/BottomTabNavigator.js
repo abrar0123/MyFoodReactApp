@@ -1,10 +1,8 @@
 import React from "react";
 import { StyleSheet } from "react-native";
-import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import MyFood from "../../screen/Home/MyFood/MyFood";
 import Cartscreen from "../../screen/Cart/cartscreen";
-import Home from "../../screen/Home/home";
 import colors from "../../constants/colors";
 import { Ionicons, AntDesign } from "@expo/vector-icons";
 import { TouchableOpacity } from "react-native";

@@ -20,7 +20,8 @@ import Card from "../../components/UI/Card";
 import AppText from "../../components/UI/AppText";
 import { useWindowDimensions } from "react-native";
 import { useDispatch } from "react-redux";
-import { auth, authActions } from "../../ReduxSlice/cartSlice";
+import { authActions } from "../../ReduxSlice/authSlice";
+
 const Login = () => {
   const [email, setemail] = useState("");
   const [pass, setpass] = useState("");
@@ -138,8 +139,13 @@ const Login = () => {
         throw Error("Result not ok ");
       }
       // console.log("token___", data.idToken);
-      Dispatch(authActions.auth_Login({ token: data.idToken, status: true }));
-
+      Dispatch(
+        authActions.auth_Login({
+          token: data.idToken,
+          status: true,
+          email: email,
+        })
+      );
       Alert.alert("You have Successfully Log In", email + "\n" + pass);
 
       setemail("");
@@ -181,7 +187,13 @@ const Login = () => {
       // console.log("data__", data);
       // authctx.onLogin(data.idToken, email);
       // console.log("login_token__", data.idToken);
-      Dispatch(authActions.auth_Login({ token: data.idToken, status: true }));
+      Dispatch(
+        authActions.auth_Login({
+          token: data.idToken,
+          status: true,
+          email: email,
+        })
+      );
 
       Alert.alert("You have Successfully Log In", email + "\n" + pass);
 

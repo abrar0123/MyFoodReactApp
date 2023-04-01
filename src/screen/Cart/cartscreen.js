@@ -1,9 +1,7 @@
 import React from "react";
-import { View, StyleSheet, SafeAreaView } from "react-native";
+import { View, StyleSheet } from "react-native";
 import AppText from "../../components/UI/AppText";
 import { useSelector } from "react-redux";
-import Lineargradient from "../../components/UI/LinearUI/Lineargradient";
-import LinearApp from "../../components/UI/LinearUI/LinearApp";
 import colors from "../../constants/colors";
 import CartItem from "./CartItem";
 import Button from "../../components/UI/Button/Button";
@@ -23,37 +21,40 @@ const Cartscreen = () => {
   };
 
   return (
-    <Lineargradient style={{ flex: 1 }}>
-      <View style={styles.container}>
-        <LinearApp style={{ borderRadius: 5 }}>
-          <AppText style={styles.mainTextstyle}>My Food Cart</AppText>
-        </LinearApp>
-        <ScrollView>
-          <CartItem userFoodCart={userFoodCart} />
-        </ScrollView>
-        <LinearApp>
-          <Button onPress={orderPlaceHandler}>
-            <AppText style={styles.mainTextstyle}>
-              Place Order {`( Total : ${total} )`}
-            </AppText>
-          </Button>
-        </LinearApp>
+    <View style={styles.container}>
+      <View style={{ backgroundColor: colors.blue, borderRadius: 8 }}>
+        <AppText style={styles.mainTextstyle}>My Food Cart</AppText>
       </View>
-    </Lineargradient>
+      <ScrollView
+        style={{
+          marginHorizontal: 10,
+        }}
+      >
+        <CartItem userFoodCart={userFoodCart} />
+      </ScrollView>
+      <Button
+        style={{ backgroundColor: colors.blue }}
+        onPress={orderPlaceHandler}
+      >
+        <AppText style={styles.mainTextstyle}>
+          Place Order {`( Total : $${total} )`}
+        </AppText>
+      </Button>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   mainTextstyle: {
     paddingVertical: 10,
-    paddingHorizontal: 15,
+    paddingHorizontal: 10,
     fontSize: 25,
     color: colors.silk,
     textAlign: "center",
   },
   container: {
-    paddingTop: 20,
-    marginHorizontal: 10,
+    paddingTop: 30,
+    marginHorizontal: 3,
     flex: 1,
   },
 });

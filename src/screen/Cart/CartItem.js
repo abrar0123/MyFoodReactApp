@@ -31,73 +31,82 @@ const CartItem = ({ userFoodCart }) => {
 
   return (
     <View style={{ flex: 1 }}>
-      {userFoodCart.map((e, index) => {
-        const myCart = userFoodCart.find((cart) => cart.id === e.id);
+      {userFoodCart &&
+        userFoodCart.map((e, index) => {
+          const myCart = userFoodCart.find((cart) => cart.id === e.id);
 
-        return (
-          <Pressable key={index}>
-            <Card style={styles.mainContainer}>
-              <View style={styles.boxCard}>
-                {/* 1st  */}
-                <View style={{ width: "48%" }}>
-                  <Image source={{ uri: e.image }} style={styles.img} />
-                </View>
-                {/*  2nd  */}
-                <View style={{ width: "48%" }}>
-                  <View>
-                    <AppText lines={2} style={styles.titleText}>
-                      {e.title}
-                    </AppText>
+          return (
+            <Pressable key={index}>
+              <Card style={styles.mainContainer}>
+                <View style={styles.boxCard}>
+                  {/* 1st  */}
+                  <View style={{ width: "48%" }}>
+                    <Image source={{ uri: e.image }} style={styles.img} />
                   </View>
-                  <View
-                    style={{
-                      flexDirection: "row",
-                      justifyContent: "space-between",
-                    }}
-                  >
-                    <AppText style={styles.idtextStyle}>${e.price}</AppText>
-                    <AppText style={styles.idtextStyle}>{e.quant}</AppText>
-                  </View>
-                  {/* button style */}
-                  <View
-                    style={{
-                      flexDirection: "row",
-                      justifyContent: "space-between",
-                    }}
-                  >
-                    <View style={styles.cartcontainer}>
-                      <TouchableOpacity onPress={removeToCart.bind(this, e.id)}>
-                        <AntDesign
-                          name="minussquare"
-                          size={30}
-                          color={colors.blue}
-                        />
-                      </TouchableOpacity>
+                  {/*  2nd  */}
+                  <View style={{ width: "48%" }}>
+                    <View>
+                      <AppText lines={2} style={styles.titleText}>
+                        {e.title}
+                      </AppText>
+                    </View>
+                    <View
+                      style={{
+                        flexDirection: "row",
+                        justifyContent: "space-between",
+                      }}
+                    >
+                      <AppText style={styles.idtextStyle}>${e.price}</AppText>
+                      <AppText style={styles.idtextStyle}>{e.quant}</AppText>
+                    </View>
+                    {/* button style */}
+                    <View
+                      style={{
+                        flexDirection: "row",
+                        justifyContent: "space-between",
+                      }}
+                    >
+                      <View style={styles.cartcontainer}>
+                        <TouchableOpacity
+                          onPress={removeToCart.bind(this, e.id)}
+                        >
+                          <AntDesign
+                            name="minussquare"
+                            size={30}
+                            color={colors.blue}
+                          />
+                        </TouchableOpacity>
 
-                      {myCart && (
-                        <AppText style={{ color: colors.white }}>
-                          {myCart.quant}
-                        </AppText>
-                      )}
+                        {myCart && (
+                          <AppText style={{ color: colors.white }}>
+                            {myCart.quant}
+                          </AppText>
+                        )}
 
-                      <TouchableOpacity onPress={addToCart.bind(this, e.id)}>
+                        <TouchableOpacity onPress={addToCart.bind(this, e.id)}>
+                          <AntDesign
+                            name="plussquare"
+                            size={30}
+                            color={colors.blue}
+                          />
+                        </TouchableOpacity>
+                      </View>
+                      <TouchableOpacity
+                        onPress={deleteProduct.bind(this, e.id)}
+                      >
                         <AntDesign
-                          name="plussquare"
-                          size={30}
+                          name="delete"
+                          size={25}
                           color={colors.blue}
                         />
                       </TouchableOpacity>
                     </View>
-                    <TouchableOpacity onPress={deleteProduct.bind(this, e.id)}>
-                      <AntDesign name="delete" size={25} color={colors.blue} />
-                    </TouchableOpacity>
                   </View>
                 </View>
-              </View>
-            </Card>
-          </Pressable>
-        );
-      })}
+              </Card>
+            </Pressable>
+          );
+        })}
     </View>
   );
 };
@@ -107,15 +116,16 @@ const styles = StyleSheet.create({
     width: "100%",
     aspectRatio: 2.2,
     marginVertical: "2%",
-    shadowColor: colors.blue,
-    borderRadius: 2,
+    backgroundColor: colors.white,
+    shadowColor: colors.black,
+    borderRadius: 10,
     shadowOffset: {
       width: 0,
       height: 2,
     },
-    elevation: 3,
+    elevation: 5,
     shadowOpacity: 0.25,
-    shadowRadius: 3.25,
+    shadowRadius: 1.25,
   },
   cartcontainer: {
     display: "flex",

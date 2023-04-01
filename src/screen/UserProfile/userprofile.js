@@ -13,9 +13,11 @@ import { AntDesign } from "@expo/vector-icons";
 import Smcard from "../../components/UI/SmallCard/smcard";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { authActions } from "../../ReduxSlice/cartSlice";
+import { authActions } from "../../ReduxSlice/authSlice";
+
 const Userprofile = () => {
   const myToken = useSelector((state) => state.auth.authToken);
+  const myEmail = useSelector((state) => state.auth.userEmail);
 
   const Dispatch = useDispatch();
 
@@ -56,7 +58,16 @@ const Userprofile = () => {
           </TouchableOpacity>
         }
       </Smcard>
-
+      {myEmail && (
+        <Smcard style={{ marginBottom: 20 }}>
+          <AppText style={{ fontSize: 22, color: colors.blue }}>
+            Your Email
+          </AppText>
+          <AppText style={{ fontSize: 20, color: colors.jaman }}>
+            {myEmail}
+          </AppText>
+        </Smcard>
+      )}
       {myToken && (
         <Smcard>
           <AppText style={{ fontSize: 22, color: colors.blue }}>
