@@ -12,12 +12,12 @@ import BottomTabNavigator from "./src/components/BottomTabs/BottomTabNavigator";
 
 export default function App() {
   const App2 = () => {
-    const isLoggedIn = useSelector((e) => e.foodcart.isLoggedIn);
+    const authToken = useSelector((e) => e.auth.authToken);
 
-    console.log("isLoggedIn__", isLoggedIn);
+    console.log("authToken____\n\n", authToken);
     return (
       <>
-        {isLoggedIn ? (
+        {!authToken ? (
           <Signup />
         ) : (
           <NavigationContainer>

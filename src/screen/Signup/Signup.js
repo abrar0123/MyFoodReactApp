@@ -19,7 +19,8 @@ import colors from "../../constants/colors";
 import Card from "../../components/UI/Card";
 import AppText from "../../components/UI/AppText";
 import { useWindowDimensions } from "react-native";
-
+import { useDispatch } from "react-redux";
+import { auth, authActions } from "../../ReduxSlice/cartSlice";
 const Login = () => {
   const [email, setemail] = useState("ab090988@gmail.com");
   const [pass, setpass] = useState("");
@@ -38,6 +39,8 @@ const Login = () => {
   const signuptext = "Signup ";
 
   const { width, height } = useWindowDimensions();
+
+  const Dispatch = useDispatch();
 
   const screenHight = height;
 
@@ -110,7 +113,7 @@ const Login = () => {
   const firebaseSignup = async () => {
     try {
       const response = await fetch(
-        "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyCUneAz5Dmey7s4uSRwo9_412OACxvtte0",
+        "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyCjsOJUB1Y2h5RaIUI6cWaAW5mXrqdsHqA",
         {
           method: "POST",
           body: JSON.stringify({
@@ -134,8 +137,8 @@ const Login = () => {
       if (!response.ok) {
         throw Error("Result not ok ");
       }
-
-      authctx.onLogin(data.idToken, email);
+      console.log("token___", data.idToken);
+      // authctx.onLogin(data.idToken, email);
 
       Alert.alert("You have Successfully Log In", email + "\n" + pass);
 
@@ -151,7 +154,7 @@ const Login = () => {
   const firebaseLogin = async () => {
     try {
       const response = await fetch(
-        "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyCUneAz5Dmey7s4uSRwo9_412OACxvtte0",
+        "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyCjsOJUB1Y2h5RaIUI6cWaAW5mXrqdsHqA",
         {
           method: "POST",
           body: JSON.stringify({
@@ -175,8 +178,11 @@ const Login = () => {
       if (!response.ok) {
         throw Error("Result not ok ");
       }
-      console.log("data__", data);
-      authctx.onLogin(data.idToken, email);
+      // console.log("data__", data);
+      // authctx.onLogin(data.idToken, email);
+      // console.log("login_token__", data.idToken);
+      Dispatch(authActions.auth_Login({ token: data.idToken, status: true }));
+
       Alert.alert("You have Successfully Log In", email + "\n" + pass);
 
       setemail("");
@@ -223,7 +229,6 @@ const Login = () => {
               value={username}
               onChangeText={unameHandler}
               placeholder="Enter username"
-              keyboardType="numeric"
             />
           </View>
         )}
@@ -340,7 +345,6 @@ const styles = StyleSheet.create({
     borderBottomWidth: 2,
     borderBottomColor: colors.blue,
     paddingRight: 10,
-    paddingBottom: 10,
     marginVertical: 10,
   },
   input: {

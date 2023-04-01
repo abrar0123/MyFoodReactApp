@@ -26,7 +26,7 @@ const listfood = ({ MyFood }) => {
         price: price,
       })
     );
-    dispatch({ type: "addToCart", payload: { id: id, quant: 1 } });
+    // dispatch({ type: "addToCart", payload: { id: id, quant: 1 } });
   };
 
   const removeToCart = (id) => {

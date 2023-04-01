@@ -14,7 +14,6 @@ import { combineReducers } from "redux";
 
 const initialState = {
   userFoodCart: [],
-  isLoggedIn: true,
   cartIndex: 2,
 };
 
@@ -55,15 +54,35 @@ const foodCartSlice = createSlice({
   },
 });
 
+const authSlice = createSlice({
+  name: "auth",
+  initialState: { authToken: "", isLoggedIn: false },
+
+  reducers: {
+    auth_Login: (state, action) => {
+      const obj = action.payload;
+      console.log("token_In_Store", obj.token);
+      state.authToken = obj.token;
+      state.isLoggedIn = obj.status;
+    },
+  },
+});
+
 const persistConfig = {
   key: "root",
   storage: AsyncStorage,
 };
 
+const persistConfig1 = {
+  key: "root",
+  storage: AsyncStorage,
+};
 const persistedreducer = persistReducer(persistConfig, foodCartSlice.reducer);
+const persistedreducerauth = persistReducer(persistConfig1, authSlice.reducer);
 
 const rootReducer = combineReducers({
   foodcart: persistedreducer,
+  auth: persistedreducerauth,
 });
 
 const mystore = configureStore({
@@ -85,3 +104,5 @@ export const mypersistor = persistStore(mystore);
 export default mystore;
 
 export const foodCartActions = foodCartSlice.actions;
+
+export const authActions = authSlice.actions;
