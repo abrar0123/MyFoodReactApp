@@ -19,12 +19,30 @@ const BottomTabNavigator = () => {
           height: 60,
           backgroundColor: colors.white,
         },
-        // tabBarActiveBackgroundColor: Color.grey,
+
+        tabBarShowLabel: false,
+
+        // tabBarActiveBackgroundColor: colors.grey,
+        tabBarActiveTintColor: colors.jaman,
+        tabBarInactiveTintColor: colors.lblack,
+
+        // tabBarLabelStyle: {
+        //   fontSize: 16,
+        //   fontWeight: "bold",
+        //   marginBottom: 2,
+        // },
+        // tabBarStyle: [
+        //   {
+        //     // display: "flex",
+        //   },
+        //   null,
+        // ],
+
         tabBarIcon: ({ focused, size, color }) => {
           return route.name === "MyFood" ? (
             <Ionicons
               name={focused ? "home" : "home-outline"}
-              size={focused ? 37 : 33}
+              size={focused ? 33 : 28}
               color={color}
             />
           ) : route.name === "track" ? (
@@ -37,7 +55,7 @@ const BottomTabNavigator = () => {
             >
               <AntDesign
                 name="Safety"
-                size={37}
+                size={focused ? 33 : 28}
                 color={focused ? colors.red : colors.white}
               />
             </TouchableOpacity>
@@ -51,7 +69,7 @@ const BottomTabNavigator = () => {
             route.name === "Profile" && (
               <Ionicons
                 name={focused ? "person" : "person-outline"}
-                size={focused ? 37 : 33}
+                size={focused ? 33 : 28}
                 color={color}
               />
             )
@@ -59,22 +77,22 @@ const BottomTabNavigator = () => {
         },
       })}
       // set entire tab setting
-      tabBarOptions={{
-        activeTintColor: colors.primaryorange,
-        inactiveTintColor: colors.black,
-        showLabel: false,
+      // tabBarOptions={{
+      //   // activeTintColor: colors.primaryorange,
+      //   // inactiveTintColor: colors.black,
+      //   showLabel: false,
 
-        style: {
-          backgroundColor: colors.grey,
-          borderTopWidth: 0,
-          elevation: 0,
-        },
-        labelStyle: {
-          fontSize: 16,
-          fontWeight: "600",
-          marginBottom: 2,
-        },
-      }}
+      //   style: {
+      //     backgroundColor: colors.grey,
+      //     borderTopWidth: 0,
+      //     elevation: 0,
+      //   },
+      //   labelStyle: {
+      //     fontSize: 16,
+      //     fontWeight: "600",
+      //     marginBottom: 2,
+      //   },
+      // }}
     >
       <Tab.Screen name="MyFood" component={MyFood} />
       <Tab.Screen name="Cart" component={Cartscreen} />
