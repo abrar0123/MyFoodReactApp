@@ -6,7 +6,8 @@ import Cartscreen from "../../screen/Cart/cartscreen";
 import colors from "../../constants/colors";
 import { Ionicons, AntDesign } from "@expo/vector-icons";
 import { TouchableOpacity } from "react-native";
-import Userprofile from "../../screen/UserProfile/userprofile";
+import MyNav from "../../screen/UserProfile/MyNav";
+
 const BottomTabNavigator = () => {
   const Tab = createBottomTabNavigator();
   return (
@@ -23,18 +24,6 @@ const BottomTabNavigator = () => {
         // tabBarActiveBackgroundColor: colors.grey,
         tabBarActiveTintColor: colors.jaman,
         tabBarInactiveTintColor: colors.lblack,
-
-        // tabBarLabelStyle: {
-        //   fontSize: 16,
-        //   fontWeight: "bold",
-        //   marginBottom: 2,
-        // },
-        // tabBarStyle: [
-        //   {
-        //     // display: "flex",
-        //   },
-        //   null,
-        // ],
 
         tabBarIcon: ({ focused, size, color }) => {
           return route.name === "MyFood" ? (
@@ -74,27 +63,10 @@ const BottomTabNavigator = () => {
           );
         },
       })}
-      // set entire tab setting
-      // tabBarOptions={{
-      //   // activeTintColor: colors.primaryorange,
-      //   // inactiveTintColor: colors.black,
-      //   showLabel: false,
-
-      //   style: {
-      //     backgroundColor: colors.grey,
-      //     borderTopWidth: 0,
-      //     elevation: 0,
-      //   },
-      //   labelStyle: {
-      //     fontSize: 16,
-      //     fontWeight: "600",
-      //     marginBottom: 2,
-      //   },
-      // }}
     >
       <Tab.Screen name="MyFood" component={MyFood} />
       <Tab.Screen name="Cart" component={Cartscreen} />
-      <Tab.Screen name="Userprofile" component={Userprofile} />
+      <Tab.Screen name="Userprofile" component={MyNav} />
     </Tab.Navigator>
   );
 };

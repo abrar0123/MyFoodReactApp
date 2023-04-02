@@ -96,6 +96,9 @@ const MyFood = () => {
       </View>
     );
   };
+
+  <ListFood MyFood={MyFood} Loader={Loader} />;
+
   return (
     <>
       <Card style={styles.mainContainer}>
