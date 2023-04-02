@@ -3,9 +3,8 @@ import { View, StyleSheet } from "react-native";
 import AppText from "../../components/UI/AppText";
 import { useSelector } from "react-redux";
 import colors from "../../constants/colors";
-import CartItem from "./CartItem";
+import CartItems from "./cartItems";
 import Button from "../../components/UI/Button/Button";
-import { ScrollView } from "react-native";
 import { callFirebaseFn } from "../../ReduxSlice/myActions";
 
 const Cartscreen = () => {
@@ -28,13 +27,13 @@ const Cartscreen = () => {
       <View style={{ backgroundColor: colors.blue, borderRadius: 8 }}>
         <AppText style={styles.mainTextstyle}>My Food Cart</AppText>
       </View>
-      <ScrollView
+      <View
         style={{
           marginHorizontal: 10,
         }}
       >
-        <CartItem userFoodCart={userFoodCart} />
-      </ScrollView>
+        <CartItems userFoodCart={userFoodCart} />
+      </View>
       <Button
         style={{ backgroundColor: colors.blue }}
         onPress={orderPlaceHandler}

@@ -14,6 +14,9 @@ import Smcard from "../../components/UI/SmallCard/smcard";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { authActions } from "../../ReduxSlice/authSlice";
+import { SwipeListView } from "react-native-swipe-list-view";
+
+const data = [{ key: "item1", text: "Swipe here to Logout" }];
 
 const Userprofile = () => {
   const myToken = useSelector((state) => state.auth.authToken);
@@ -29,13 +32,9 @@ const Userprofile = () => {
 
     console.log("logout");
   };
-  return (
-    <View style={styles.container}>
-      <Smcard>
-        <AppText style={{ fontSize: 22, textAlign: "center" }}>
-          Welcome to User Profile
-        </AppText>
-      </Smcard>
+
+  const renderItem = ({ item }) => {
+    return (
       <Smcard style={styles.logoutStyle}>
         <AppText
           style={{
@@ -44,22 +43,55 @@ const Userprofile = () => {
             fontWeight: "900",
           }}
         >
-          Want to to Logout
+          {item.text}
         </AppText>
+      </Smcard>
+    );
+  };
 
-        {
+  const renderHiddenItems = () => {
+    return (
+      <View style={styles.deletbtn}>
+        <Smcard
+          style={{
+            backgroundColor: colors.red,
+            height: "100%",
+            borderTopRightRadius: 15,
+            borderBottomRightRadius: 15,
+            paddingHorizontal: 18,
+            paddingVertical: 15,
+          }}
+        >
           <TouchableOpacity onPress={logoutHandler}>
             <AntDesign
               name="logout"
               size={25}
-              color={colors.jaman}
+              color={colors.white}
               style={{ fontWeight: "bold" }}
             />
           </TouchableOpacity>
-        }
+        </Smcard>
+      </View>
+    );
+  };
+  return (
+    <View style={styles.container}>
+      <Smcard style={{ marginBottom: 20 }}>
+        <AppText style={{ fontSize: 22, textAlign: "center" }}>
+          Welcome to User Profile
+        </AppText>
       </Smcard>
+
+      <SwipeListView
+        data={data}
+        renderItem={renderItem}
+        renderHiddenItem={renderHiddenItems}
+        // leftOpenValue={75}
+        rightOpenValue={-75}
+      />
+
       {myEmail && (
-        <Smcard style={{ marginBottom: 20 }}>
+        <Smcard style={{ marginVertical: 20 }}>
           <AppText style={{ fontSize: 22, color: colors.blue }}>
             Your Email
           </AppText>
@@ -84,17 +116,26 @@ const styles = StyleSheet.create({
   container: {
     paddingTop: Platform.OS === "android" && StatusBar.currentHeight,
     marginHorizontal: 10,
+    // marginBottom: 20,
+  },
+  row: {
+    padding: 20,
+    backgroundColor: "white",
+  },
+  deletbtn: {
+    alignItems: "center",
+    backgroundColor: colors.white,
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "flex-end",
+    borderRadius: 10,
   },
   logoutStyle: {
-    flexDirection: "row",
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
-    marginBottom: 20,
-    marginTop: 20,
+    // marginBottom: 20,
+    // marginTop: 20,
     paddingVertical: 20,
-    paddingHorizontal: 10,
-    borderRadius: 10,
+    paddingHorizontal: 15,
+    borderRadius: 3,
   },
 });
 
