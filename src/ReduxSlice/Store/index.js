@@ -11,10 +11,12 @@ import { combineReducers } from "redux";
 import { persistedreducer } from "../cartSlice";
 import { persistedreducerauth } from "../authSlice";
 import persistStore from "redux-persist/es/persistStore";
+import { apireducer } from "../apiSlice";
 
 const rootReducer = combineReducers({
   foodcart: persistedreducer,
   auth: persistedreducerauth,
+  api: apireducer,
 });
 
 const mystore = configureStore({

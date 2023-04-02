@@ -9,7 +9,6 @@ const authSlice = createSlice({
   reducers: {
     auth_Login: (state, action) => {
       const obj = action.payload;
-      console.log("token_In_Store", obj.token);
       state.authToken = obj.token;
       state.isLoggedIn = obj.status;
       state.userEmail = obj.email;

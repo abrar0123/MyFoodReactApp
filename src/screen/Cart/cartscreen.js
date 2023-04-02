@@ -6,6 +6,8 @@ import colors from "../../constants/colors";
 import CartItem from "./CartItem";
 import Button from "../../components/UI/Button/Button";
 import { ScrollView } from "react-native";
+import { callFirebaseFn } from "../../ReduxSlice/myActions";
+
 const Cartscreen = () => {
   const cartIndex = useSelector((state) => state.foodcart.cartIndex);
   const userFoodCart = useSelector((state) => state.foodcart.userFoodCart);
@@ -18,6 +20,7 @@ const Cartscreen = () => {
 
   const orderPlaceHandler = () => {
     console.log("orderPlaceHandler__successfully");
+    callFirebaseFn();
   };
 
   return (

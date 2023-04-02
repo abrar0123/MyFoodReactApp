@@ -6,17 +6,25 @@ import { PersistGate } from "redux-persist/integration/react";
 import { useSelector } from "react-redux";
 import Signup from "./src/screen/Signup/Signup";
 import { Provider } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import BottomTabNavigator from "./src/components/BottomTabs/BottomTabNavigator";
+import { callFirebaseFn } from "./src/ReduxSlice/myActions";
 
 export default function App() {
   const App2 = () => {
+    // const [UserEmail, setUserEmail] = useState("");
+    let MyEmail = "";
     const authToken = useSelector((e) => e.auth.authToken);
     const userFoodCart = useSelector((state) => state.foodcart.userFoodCart);
 
     const userEmail = useSelector((state) => state.auth.userEmail);
+    const Firedata = useSelector((state) => state.api.myFood);
 
-    console.log("email", userEmail);
+    userEmail && (MyEmail = userEmail);
+
+
+    console.log("Firebase_Data_____", Firedata);
+
     useEffect(() => {
       let total = 0;
       for (let u of userFoodCart) {
@@ -30,14 +38,13 @@ export default function App() {
             body: JSON.stringify({
               CartItems: userFoodCart,
               TotalBill: total,
-              User: userEmail,
+              User: MyEmail,
             }),
           }
         );
       };
       FireInsertUserCart();
     }, [userFoodCart]);
-    console.log("authToken____\n\n", authToken);
     return (
       <>
         {!authToken ? (
